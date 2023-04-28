@@ -22,4 +22,4 @@ if n4%2==0:
 else:
 	impar+=n4
 print(f"Soma dos pares = {par}")
-print(f"Soma dos pares = {impar}")
+print(f"Soma dos ímpares= {impar}")
