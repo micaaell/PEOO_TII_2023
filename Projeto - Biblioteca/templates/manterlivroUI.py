@@ -22,6 +22,7 @@ class ManterLivroUI:
       df = pd.DataFrame(dic)
       st.dataframe(df)
 
+
   def inserir():
     generos= View.genero_listar()
     idGenero = st.selectbox("Selecione o genero", generos)
@@ -33,6 +34,7 @@ class ManterLivroUI:
       View.livro_inserir(nome,idGenero, datapu, autor,editora)
       st.success("Livro inserido com sucesso")
       time.sleep(2)
+      st.rerun()
      
 
   def atualizar():

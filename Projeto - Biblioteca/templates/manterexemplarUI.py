@@ -39,12 +39,12 @@ class ManterExemplarUI:
       st.write("Nenhum exemplar cadastrado")
     else:  
       livros= View.livro_listar()
-      idLivro = st.selectbox("Selecione o livro", livros)
+      idLivro = st.selectbox("Selecione o livro", livros, key="unique_key_for_selectbox")
       unidade = st.text_input("Informe a nova unidade")
       local = st.text_input("Informe o novo local")
       if st.button("Atualizar"):
-        id = op.get_id()
-        View.exemplares_atualizar(id, idLivro, unidade, local)
+        id = idLivro.get_id()
+        View.exemplar_atualizar(id, idLivro, unidade, local)
         st.success("exemplar atualizado com sucesso")
         time.sleep(2)
         st.rerun()

@@ -31,7 +31,6 @@ class IndexUI:
       if st.sidebar.button("Logout"):
         del st.session_state["cliente_id"]
         del st.session_state["cliente_nome"]
-      st.rerun()
       
     def sidebar():
       if "cliente_id" not in st.session_state:
@@ -39,9 +38,8 @@ class IndexUI:
       else:
         st.sidebar.write("Bem-vindo(a), " + st.session_state["cliente_nome"])
         if st.session_state["cliente_nome"] == "admin": IndexUI.menu_admin()
-        else:
-          IndexUI.menu_cliente()
-          IndexUI.btn_logout() 
+        else:IndexUI.menu_cliente()
+        IndexUI.btn_logout() 
           
 
     def main():
