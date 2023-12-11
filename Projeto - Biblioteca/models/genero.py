@@ -13,8 +13,7 @@ class Genero:
   def set_genero(self, genero): self.__genero = genero
 
   def __eq__(self, x):
-    if self.__id == x.__id and self.__genero == x.__genero:
-      return True
+    if self.__id == x.__id and self.__genero == x.__genero: return True
     return False
 
   def __str__(self):
@@ -22,8 +21,8 @@ class Genero:
 
   def to_json(self):
     return {
-      'Id': self.__id,
-      'Gênero': self.__genero}
+      'id': self.__id,
+      'genero': self.__genero}
 
 
 class NGenero:
