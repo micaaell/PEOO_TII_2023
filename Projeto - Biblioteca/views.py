@@ -1,6 +1,7 @@
 from models.livro import Livro, NLivros
 from models.exemplar import Exemplar, NExemplar
 from models.genero import Genero, NGenero
+from models.cliente import Cliente, NCliente
 import datetime
 
 class View:
@@ -23,7 +24,28 @@ class View:
     
   def livro_excluir(id):
     livro = Livro(id, "", "", "","","")
-    NLivros.excluir(livro)    
+    NLivros.excluir(livro)
+  
+  def cliente_admin():
+    for cliente in View.cliente_listar():
+      if cliente.get_nome() == "admin": return
+    View.cliente_inserir("admin", "admin", "0000", "admin")  
+
+  
+  def cliente_login(email, senha):
+    for cliente in View.cliente_listar():
+      if cliente.get_email() == email and cliente.get_senha() == senha:
+        return True
+    return False
+
+  def cliente_login(email, senha):
+    for cliente in View.cliente_listar():
+      if cliente.get_email() == email and cliente.get_senha() == senha:
+        return cliente
+    return None  
+  
+  def cliente_listar():
+    return NCliente.listar()
 
   def exemplar_listar():
     return NExemplar.listar()
@@ -51,6 +73,3 @@ class View:
 
   def genero_excluir(id):
     NGenero.excluir(Genero(id, ""))
-
-  def genero_buscar(genero,id):
-    NLivros.buscar(genero,id)
