@@ -46,6 +46,9 @@ class View:
   
   def cliente_listar():
     return NCliente.listar()
+  def cliente_atualizar(id, nome, email, fone, senha):
+    cliente = Cliente(id, nome, email, fone, senha)
+    NCliente.atualizar(cliente)
 
   def exemplar_listar():
     return NExemplar.listar()
