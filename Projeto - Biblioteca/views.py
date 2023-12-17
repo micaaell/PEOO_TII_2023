@@ -5,8 +5,8 @@ from models.cliente import Cliente, NCliente
 import datetime
 
 class View:
-  def livro_inserir(nome,idGenero, datapu, autor,editora):
-    livro = Livro(0, nome, idGenero,datapu, autor,editora)
+  def livro_inserir(idGenero,nome, datapu, autor,editora):
+    livro = Livro(0,idGenero,nome,datapu, autor,editora)
     NLivros.inserir(livro)
 
   def livro_listar():
@@ -18,8 +18,8 @@ class View:
   def livro_listar_id(id):
     return NLivros.listar_id(id)
 
-  def livro_atualizar(id, nome, idGenero,datapu, autor,editora):
-    livro = Livro(id, nome,idGenero, datapu, autor,editora)
+  def livro_atualizar(id, idGenero,nome,datapu, autor,editora):
+    livro = Livro(id,idGenero,nome, datapu, autor,editora)
     NLivros.atualizar(livro)
     
   def livro_excluir(id):
@@ -46,6 +46,7 @@ class View:
   
   def cliente_listar():
     return NCliente.listar()
+  
   def cliente_atualizar(id, nome, email, fone, senha):
     cliente = Cliente(id, nome, email, fone, senha)
     NCliente.atualizar(cliente)
