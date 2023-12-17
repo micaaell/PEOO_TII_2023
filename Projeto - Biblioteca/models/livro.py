@@ -24,12 +24,12 @@ class Livro:
   def set_datapu(self, datapu): self.__datapu = datapu
 
   def __eq__(self, x):
-    if self.__id == x.__id and self.__idGenero==x.__idGenero and self.__nome == x.__nome and self.__datapu == x.__datapu and self.__autor == x.__autor:
+    if self.__id == x.__id and self.__idGenero==x.__idGenero and self.__nome == x.__nome and self.__datapu == x.__datapu and self.__autor == x.__autor and self.__editora == x.__editora:
       return True
     return False
 
   def __str__(self):
-    return f"{self.__id} - {self.__idGenero} - {self.__nome} - {self.__datapu} - {self.__autor} - {self.__editora} - {self.__editora}"
+    return f"{self.__id} - {self.__idGenero} - {self.__nome} - {self.__datapu} - {self.__autor} - {self.__editora}"
 
 
 class NLivros:
@@ -66,8 +66,8 @@ class NLivros:
     cls.abrir()
     aux = cls.listar_id(obj.get_id())
     if aux is not None:
-      aux.set_nome(obj.get_nome())
       aux.set_idGenero(obj.get_idGenero())
+      aux.set_nome(obj.get_nome())
       aux.set_datapu(obj.get_datapu())
       aux.set_autor(obj.get_autor())
       aux.set_editora(obj.get_editora())
@@ -90,7 +90,7 @@ class NLivros:
       with open("livros.json", mode="r") as arquivo:
         livros_json = json.load(arquivo)
         for obj in livros_json:
-          aux = Livro(obj["_Livro__id"],obj["_Livro__nome"],obj["_Livro__idGenero"], obj["_Livro__datapu"], obj["_Livro__autor"], obj["_Livro__editora"])
+          aux = Livro(obj["_Livro__id"],obj["_Livro__idGenero"],obj["_Livro__nome"], obj["_Livro__datapu"], obj["_Livro__autor"], obj["_Livro__editora"])
           cls.__livros.append(aux)
     except FileNotFoundError:
       pass
