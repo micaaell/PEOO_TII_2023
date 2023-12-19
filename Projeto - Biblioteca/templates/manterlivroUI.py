@@ -25,13 +25,13 @@ class ManterLivroUI:
 
   def inserir():
     generos= View.genero_listar()
-    idGenero = st.selectbox("Selecione o genero", generos)
+    genero = st.selectbox("Selecione o genero", generos)
     nome = st.text_input("Informe o nome")
     datapu = st.text_input("Informe o data da publicação")
     autor = st.text_input("Informe o autor")
     editora = st.text_input("Informe a editora")
     if st.button("Inserir"):
-      View.livro_inserir(idGenero,nome ,datapu, autor,editora)
+      View.livro_inserir(genero.get_id(),nome ,datapu, autor,editora)
       st.success("Livro inserido com sucesso")
       time.sleep(2)
       st.rerun()
@@ -44,14 +44,14 @@ class ManterLivroUI:
       st.write("Nenhum livro cadastrado")
     else:
       op = st.selectbox("Escolha o livro para a atualização", livros)
-      idGenero = st.selectbox("Qual o genero?", generos)
+      genero = st.selectbox("Qual o genero?", generos)
       nome = st.text_input("Informe o novo nome", op.get_nome())
       datapu = st.text_input("Informe a nova data de publicação", op.get_datapu())
       autor = st.text_input("Informe o novo autor", op.get_autor())
       editora = st.text_input("Informe a nova editora", op.get_editora())
     if st.button("Atualizar"):
       id = op.get_id()
-      View.livro_atualizar(id,idGenero,nome,datapu, autor,editora)
+      View.livro_atualizar(id,genero.get_id(),nome,datapu, autor,editora)
       st.success("Livro atualizado com sucesso")
       time.sleep(2)
 

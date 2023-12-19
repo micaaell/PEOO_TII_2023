@@ -28,6 +28,7 @@ class ListarLivroUI:
     livros = View.livro_listar()
     generos = View.genero_listar()
     idGenero = st.selectbox("Selecione o Gênero", generos)
+
     
     if len(livros) == 0:
       st.write("Nenhum livro cadastrado")
@@ -39,16 +40,13 @@ class ListarLivroUI:
     if len(generos) == 0:
       st.write("Nenhum genero cadastrado")
     else:
-      for obj in generos:
+      dic = []
+      for obj in View.livro_listar_genero(idGenero.get_id()):
         dic.append(obj.__dict__)
-    
-
       df = pd.DataFrame(dic)
+      st.dataframe(df)
 
-        # Filtrar o DataFrame para listar apenas os livros do gênero escolhido
-      df_filtrado = df[df['generos'] == generos]
 
-      if df_filtrado.empty:
-        st.write(f"Nenhum livro cadastrado para o gênero {idGenero}")
-      else:
-        st.dataframe(df_filtrado)
+
+
+      

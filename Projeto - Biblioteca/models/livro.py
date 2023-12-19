@@ -34,8 +34,6 @@ class Livro:
 
 class NLivros:
   __livros = [] # lista de clientes inicia vazia
-  __generos = []
-  __nomes = []
 
   @classmethod
   def inserir(cls, obj):
@@ -43,11 +41,10 @@ class NLivros:
     id = 0  # encontrar o maior id já usado
     for aux in cls.__livros:
       if aux.get_id() > id: id = aux.get_id()
-      obj.set_id(id + 1)
-      cls.__livros.append(obj)# insere um cliente (obj) na lista
-      cls.__nomes.append(obj.get_nome()) # insere um nome (obj) na lista
-      cls.salvar()
-      return True
+    obj.set_id(id + 1)
+    cls.__livros.append(obj)# insere um cliente (obj) na lista
+    cls.salvar()
+    return True
 
   @classmethod
   def listar(cls):

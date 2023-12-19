@@ -11,6 +11,13 @@ class View:
 
   def livro_listar():
     return NLivros.listar()
+
+  def livro_listar_genero(idGenero):
+    genero=[]
+    for livro in View.livro_listar():
+      if livro.get_idGenero() == idGenero:
+        genero.append(livro)
+    return genero
   
   def livro_listar_nomes():
     return NLivros.listar_nomes()
