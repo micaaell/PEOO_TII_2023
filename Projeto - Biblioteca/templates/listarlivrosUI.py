@@ -41,7 +41,7 @@ class ListarLivroUI:
       st.write("Nenhum genero cadastrado")
     else:
       dic = []
-      for obj in View.livro_listar_genero(idGenero.get_id()):
+      for obj in View.livro_listar_genero(idGenero.get_genero()):
         dic.append(obj.__dict__)
       df = pd.DataFrame(dic)
       st.dataframe(df)

@@ -32,6 +32,10 @@ class View:
   def livro_excluir(id):
     livro = Livro(id, "", "", "","","")
     NLivros.excluir(livro)
+
+  def cliente_inserir(nome, email, fone, senha):
+    cliente = Cliente(0, nome, email, fone, senha)
+    NCliente.inserir(cliente)
   
   def cliente_admin():
     for cliente in View.cliente_listar():

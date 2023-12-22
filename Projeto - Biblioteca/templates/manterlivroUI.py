@@ -31,7 +31,7 @@ class ManterLivroUI:
     autor = st.text_input("Informe o autor")
     editora = st.text_input("Informe a editora")
     if st.button("Inserir"):
-      View.livro_inserir(genero.get_id(),nome ,datapu, autor,editora)
+      View.livro_inserir(genero.get_genero(),nome ,datapu, autor,editora)
       st.success("Livro inserido com sucesso")
       time.sleep(2)
       st.rerun()
@@ -51,7 +51,7 @@ class ManterLivroUI:
       editora = st.text_input("Informe a nova editora", op.get_editora())
     if st.button("Atualizar"):
       id = op.get_id()
-      View.livro_atualizar(id,genero.get_id(),nome,datapu, autor,editora)
+      View.livro_atualizar(id,genero.get_genero(),nome,datapu, autor,editora)
       st.success("Livro atualizado com sucesso")
       time.sleep(2)
 

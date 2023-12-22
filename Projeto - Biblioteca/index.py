@@ -17,11 +17,12 @@ class IndexUI:
       if op == "Todos os livros": ListarLivroUI.main()
       
     def menu_admin():
-      op = st.sidebar.selectbox("Menu", ["Livros", "Exemplares", "Gêneros", "Editar Perfil"])
+      op = st.sidebar.selectbox("Menu", ["Livros", "Exemplares", "Gêneros", "Editar Perfil","Todos os livros"])
       if op == "Livros": ManterLivroUI.main()
       if op == "Exemplares": ManterExemplarUI.main()
       if op == "Gêneros": ManterGeneroUI.main()
       if op == "Editar Perfil": EditarPerfilUI.main()
+      if op == "Todos os livros": ListarLivroUI.main()
       
     def menu_cliente():
       op = st.sidebar.selectbox("Menu", ["Todos os livros"])

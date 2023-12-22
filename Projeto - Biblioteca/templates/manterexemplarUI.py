@@ -28,7 +28,7 @@ class ManterExemplarUI:
     unidade = st.text_input("Informe a Unidade")
     local = st.text_input("Informe o Local")
     if st.button("Inserir"):
-      View.exemplar_inserir(idLivro, unidade, local)
+      View.exemplar_inserir(idLivro.get_nome(), unidade, local)
       st.success("Exemplar inserido com sucesso")
       time.sleep(2)
       st.rerun()
@@ -44,7 +44,7 @@ class ManterExemplarUI:
       local = st.text_input("Informe o novo local")
       if st.button("Atualizar"):
         id = idLivro.get_id()
-        View.exemplar_atualizar(id, idLivro, unidade, local)
+        View.exemplar_atualizar(id, idLivro.get_nome(), unidade, local)
         st.success("exemplar atualizado com sucesso")
         time.sleep(2)
         st.rerun()
