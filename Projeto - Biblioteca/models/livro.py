@@ -1,4 +1,8 @@
 import json
+from time import strftime
+from models.models import Modelo
+import datetime
+
 
 class Livro:
   def __init__(self, id,idGenero, nome, datapu,autor, editora):
@@ -19,8 +23,8 @@ class Livro:
   def set_id(self, id): self.__id = id
   def set_idGenero(self, idGenero): self.__id = idGenero
   def set_nome(self, nome): self.__nome = nome
-  def set_autor(self, autor): self.__email = autor
-  def set_editora(self, editora): self.__fone = editora
+  def set_autor(self, autor): self.__autor = autor
+  def set_editora(self, editora): self.__editora = editora
   def set_datapu(self, datapu): self.__datapu = datapu
 
   def __eq__(self, x):
@@ -31,68 +35,31 @@ class Livro:
   def __str__(self):
     return f"{self.__id} - {self.__idGenero} - {self.__nome} - {self.__datapu} - {self.__autor} - {self.__editora}"
 
+  def to_json(self):
+    return {
+      'id': self.__id,
+      'idGenero': self.__idGenero,
+      'datapu': self.__datapu,
+      'nome': self.__nome,
+      'editora': self.__editora,
+      'autor': self.__autor}
 
-class NLivros:
-  __livros = [] # lista de clientes inicia vazia
 
-  @classmethod
-  def inserir(cls, obj):
-    cls.abrir()
-    id = 0  # encontrar o maior id já usado
-    for aux in cls.__livros:
-      if aux.get_id() > id: id = aux.get_id()
-    obj.set_id(id + 1)
-    cls.__livros.append(obj)# insere um cliente (obj) na lista
-    cls.salvar()
-    return True
-
-  @classmethod
-  def listar(cls):
-    cls.abrir()
-    return cls.__livros  # retorna a lista de clientes
-
-  @classmethod
-  def listar_id(cls, id):
-    cls.abrir()
-    for obj in cls.__livros:
-      if obj.get_id() == id: return obj
-    return None
-
-  @classmethod
-  def atualizar(cls, obj):
-    cls.abrir()
-    aux = cls.listar_id(obj.get_id())
-    if aux is not None:
-      aux.set_idGenero(obj.get_idGenero())
-      aux.set_nome(obj.get_nome())
-      aux.set_datapu(obj.get_datapu())
-      aux.set_autor(obj.get_autor())
-      aux.set_editora(obj.get_editora())
-      cls.salvar()
-
-  @classmethod
-  def excluir(cls, obj):
-    cls.abrir()
-    aux = cls.listar_id(obj.get_id())
-    if aux is not None:
-      cls.__livros.remove(aux)
-      cls.salvar()
-      
-  
+class NLivros(Modelo):
 
   @classmethod
   def abrir(cls):
-    cls.__livros = []
+    cls.objetos = []
     try:
       with open("livros.json", mode="r") as arquivo:
         livros_json = json.load(arquivo)
         for obj in livros_json:
           aux = Livro(obj["_Livro__id"],obj["_Livro__idGenero"],obj["_Livro__nome"], obj["_Livro__datapu"], obj["_Livro__autor"], obj["_Livro__editora"])
-          cls.__livros.append(aux)
+          cls.objetos.append(aux)
     except FileNotFoundError:
       pass
 
   @classmethod
   def salvar(cls):
     with open("livros.json", mode="w") as arquivo:
-      json.dump(cls.__livros, arquivo, default=vars)
+      json.dump(cls.objetos, arquivo, default=vars)
